@@ -14,7 +14,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server, {
   cors: {
-    origin: ["http://localhost:5173", "https://masync-chat-app.netlify.app"],
+    origin: ["http://localhost:5173"],
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -35,8 +35,7 @@ app.get("/", (req, res) => {
   res.json({
     project: "MERN Chat App using Socket.IO",
     message: "Welcome to MERN Chat Application",
-    developedBy: "MasynTech",
-    website: "www.masynctech.com",
+    developedBy: "Hitman",
   });
 });
 app.use("/api/users", userRouter);
