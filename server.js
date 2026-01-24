@@ -24,9 +24,16 @@ app.use(cors());
 app.use(express.json());
 //connect to db
 mongoose
-  .connect(process.env.MONGO_URL)
-  .then(() => console.log("Connected to DB"))
-  .catch((err) => console.log("Mongodb connected failed", err));
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000,
+  })
+  .then(() => console.log("MongoDB connected successfully"))
+  .catch((err) => {
+    console.error("MongoDB connection failed");
+    console.error(err.message);
+  });
 
 //Initialize
 socketIo(io);
